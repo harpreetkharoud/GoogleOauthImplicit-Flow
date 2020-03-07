@@ -5,12 +5,12 @@
   <body>
     <h1>Basic OAuth example using implicit flow</h1>
 	  <div id="buttons">
-	  <button type="button" onclick="myFunction_facebook()"> Login with Facebook </button>
-	  <button type="button" onclick="myFunction_google()"> Login with Google </button>
+	  <button type="button" onclick="myFunctionfacebook()"> Login with Facebook </button>
+	  <button type="button" onclick="myFunctiongoogle()"> Login with Google </button>
 	  </div>
  <script>
 
-      function myFunction_facebook()
+      function myFunctionfacebook()
 	 {
 	
       if (!document.location.href.includes('access_token')) {
@@ -59,7 +59,7 @@
 	  
 	 }
 	 
-	 function myFunction_google()
+	 function myFunctiongoogle()
 	 {
 		  if (!document.location.href.includes('access_token')) {
 
