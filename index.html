@@ -1,19 +1,10 @@
-
-
-
 <html>
 <head>
-
 </head>
 <body>
 <h1>Basic OAuth example using implicit flow</h1>
-<div id="buttons">
-<button type="button" onclick="myFunction()"> Login with Facebook </button>
-<button type="button" onclick="myFunctiongoogle()"> Login with Google </button>
-</div>
 <script>
-
-function myFunction()
+function buttonclickfacebook()
 {
 
 if (!document.location.href.includes('access_token')) {
@@ -25,6 +16,7 @@ if (!document.location.href.includes('access_token')) {
 				   `scope=email,public_profile`].join('&') ;
 	  
       } 
+	
 
 console.log('Got a token!!');
 
@@ -35,10 +27,13 @@ var token = matches[2];
 fetch('https://graph.facebook.com/v3.2/me?fields=name,email,picture', {
 
 headers:{
+	
+	
 "Authorization": `Bearer ${token}`
 }
 }).then(function(response) {
 
+	
 console.log(response);
 if (response.status != 200) {
 document.location.href = app_url;
@@ -47,11 +42,15 @@ token = null;
 return response.json();
 }).then(function(myJson) {
 
+	
+	
 console.log(myJson);
 let userinfo = document.createElement('h2');
 userinfo.innerText = `Hello ${myJson.name}`;
 document.body.append(userinfo);
 
+	
+	
 let userpic = document.createElement('img');
 userpic.src = myJson.picture.data.url;
 document.body.append(userpic);
@@ -61,7 +60,7 @@ document.body.append(userpic);
 
 }
 
-function myFunctiongoogle()
+function buttonclicgoogle()
 {
 if (!document.location.href.includes('access_token')) {
 
@@ -78,19 +77,27 @@ let client_id = '627787545152-gr10c5ubgvm11r48vq73a98ast9v66hq.apps.googleuserco
 var matches = document.location.href.match(/(.*)\#access_token\=(.*?)\&/);
 var app_url = matches[1];
 var token = matches[2];
+	
+	
 console.log(token);
+	
+	
+	
 fetch('https://www.googleapis.com/oauth2/v2/userinfo', {
 
 headers:{
 "Authorization": `Bearer ${token}`
 
 }
+	
+	
 }).then(function(response) {
-// Extra error check, if we get an invalid response, it means that
-// our token is invalid. We will restart the login flow by
-// clearing the access_token
+
 	console.log("GFrom ");
+	
+	
 console.log(response);
+	
 if (response.status != 200) {
 document.location.href = app_url;
 token = null;
@@ -99,6 +106,7 @@ return response.json();
 }).then(function(myJson) {
 
 console.log(myJson);
+	
 let userinfo = document.createElement('h2');
 userinfo.innerText = `Hello ${myJson.name}`;
 document.body.append(userinfo);
@@ -114,7 +122,11 @@ document.body.append(userpic);
 
 </script>
 
-
+<div id="buttons">
+<button type="button" onclick="buttonclickfacebook()"> Login with Facebook </button>
+<button type="button" onclick="buttonclickgoogle()"> Login with Google </button>
+</div>
+	
 </body>
 </html>
-© 2020 GitHub, Inc.
+
